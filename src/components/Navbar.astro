@@ -1,0 +1,63 @@
+---
+const links = [
+  { name: "Inicio", href: "/" },
+  { name: "Servicios", href: "/servicios" },
+  { name: "Sobre mí", href: "/sobre-mi" },
+  { name: "Contacto", href: "/contacto" },
+];
+---
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(10, 15, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .links a {
+    color: var(--secondary);
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .links a:hover {
+    color: var(--accent);
+  }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">JLR Solutions</div>
+
+    <div class="links">
+      {links.map(link => (
+        <a href={link.href}>{link.name}</a>
+      ))}
+    </div>
+  </div>
+</nav>

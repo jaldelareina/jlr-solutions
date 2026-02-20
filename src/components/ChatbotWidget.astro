@@ -1,0 +1,32 @@
+<style>
+  .bubble {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--primary-glow);
+    transition: var(--transition);
+    z-index: 9999;
+  }
+
+  .bubble:hover {
+    transform: scale(1.1);
+    background: var(--accent);
+  }
+</style>
+
+<div
+  class="bubble"
+  onclick="window.open('https://n8n.jaldelareina.es/chat', '_blank')"
+>
+  💬
+</div>

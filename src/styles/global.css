@@ -1,0 +1,70 @@
+:root {
+  --bg: #0a0f1a;
+  --text: #e4e8ef;
+  --primary: #4bc7ff;
+  --primary-glow: rgba(75, 199, 255, 0.5);
+  --secondary: #8a9ab5;
+  --accent: #7cf7ff;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 14px;
+  --transition: 0.25s ease;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  padding: 12px 22px;
+  border-radius: var(--radius);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--accent);
+}
