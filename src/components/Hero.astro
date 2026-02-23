@@ -1,49 +1,100 @@
----
----
+<section class="hero">
+  <div class="hero-content">
+    <h1>Automatización e Inteligencia Artificial para impulsar tu negocio</h1>
+    <p>Soluciones inteligentes que integran procesos, datos y sistemas para mejorar la eficiencia y productividad de tu empresa.</p>
 
-<style>
-  section {
-    padding: 120px 20px;
-    text-align: center;
-    background: linear-gradient(
-      180deg,
-      rgba(75, 199, 255, 0.12),
-      transparent
-    );
-  }
-
-  h1 {
-    font-size: 3rem;
-    max-width: 900px;
-    margin: auto;
-    line-height: 1.2;
-    color: var(--text);
-  }
-
-  p {
-    color: var(--secondary);
-    max-width: 700px;
-    margin: 20px auto 40px;
-    font-size: 1.2rem;
-  }
-
-  .cta {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 24px;
-  }
-</style>
-
-<section>
-  <h1>Automatización e Inteligencia Artificial para impulsar tu negocio.</h1>
-  <p>
-    Desarrollamos soluciones inteligentes que integran procesos, datos y sistemas
-    para optimizar tu empresa con tecnología moderna y efectiva.
-  </p>
-
-  <div class="cta">
-    <a href="/servicios" class="btn">Ver servicios</a>
-    <a href="/contacto" class="btn" style="background: var(--accent);">Contacto</a>
+    <div class="buttons">
+      <a class="btn primary" href="/servicios">Ver servicios</a>
+      <a class="btn secondary" href="/contacto">Contacto</a>
+    </div>
   </div>
 </section>
+
+<style>
+.hero {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  /* Fondo animado */
+  background: linear-gradient(-45deg, #0b0f19, #0a1d33, #132a4f, #0d1b2e);
+  background-size: 400% 400%;
+  animation: gradientAnimation 18s ease infinite;
+}
+
+/* Animación del gradiente */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+  max-width: 900px;
+  padding: 0 1rem;
+  animation: fadeInUp 1.2s ease forwards;
+  opacity: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 1.2rem;
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+}
+
+.btn.primary {
+  background: #58a6ff;
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: #79c0ff;
+}
+
+.btn.secondary {
+  color: white;
+  border: 2px solid #58a6ff;
+}
+
+.btn.secondary:hover {
+  background: #58a6ff;
+  color: #000;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 { font-size: 2.3rem; }
+  p { font-size: 1.1rem; }
+}
+</style>

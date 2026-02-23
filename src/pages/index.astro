@@ -1,28 +1,20 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Services from "../components/Services.astro";
 import SEO from "../components/SEO.astro";
-import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
-import Footer from "../components/Footer.astro";
 import ChatbotWidget from "../components/ChatbotWidget.astro";
 import "../styles/global.css";
 ---
 
-<html lang="es">
-  <head>
+<Layout>
   <SEO
+    slot="head"
     title="JLR Solutions — Automatización e Inteligencia Artificial"
-    description="Soluciones IA, automatización, chatbots e integración de sistemas para tu negocio."
+    description="Soluciones IA, automatización, chatbots e integración de sistemas para tu empresa."
   />
-</head>
-  <body>
-    <Navbar />
-    <Hero />
 
-    <main class="container">
-      <h2 style="margin-top: 80px;">Servicios principales</h2>
-      <p>Automatización, chatbots IA, integración de sistemas, consultoría y soluciones inteligentes.</p>
-    </main>
-    <Footer />
-    <ChatbotWidget />
-  </body>
-</html>
+  <Hero />
+  <Services />
+  <ChatbotWidget />
+</Layout>

@@ -1,3 +1,19 @@
+/* Fondo animado global */
+body {
+  background: linear-gradient(120deg, #0a0f1c, #0e1a32, #0a0f1c);
+  background-size: 300% 300%;
+  animation: gradientScroll 20s ease infinite;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes gradientScroll {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 :root {
   --bg: #0a0f1a;
   --text: #e4e8ef;
