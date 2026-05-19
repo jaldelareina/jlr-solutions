@@ -1,21 +1,17 @@
 ---
-let sent = false;
 ---
-
 <style>
   section {
     padding: 80px 20px;
     max-width: 700px;
     margin: auto;
   }
-
   form {
     display: flex;
     flex-direction: column;
     gap: 18px;
     margin-top: 20px;
   }
-
   input, textarea {
     width: 100%;
     padding: 14px;
@@ -24,8 +20,8 @@ let sent = false;
     color: var(--text);
     border-radius: var(--radius);
     resize: none;
+    font-family: inherit;
   }
-
   button {
     padding: 14px 20px;
     background: var(--primary);
@@ -36,11 +32,13 @@ let sent = false;
     transition: var(--transition);
     color: black;
   }
-
-  button:hover {
+  button:hover:not(:disabled) {
     background: var(--accent);
   }
-
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   .success {
     background: rgba(0,255,200,0.15);
     padding: 14px;
@@ -48,20 +46,107 @@ let sent = false;
     border: 1px solid var(--accent);
     margin-bottom: 20px;
     text-align: center;
+    animation: slideDown 0.3s ease;
+  }
+  .error {
+    background: rgba(255,100,100,0.15);
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,100,100,0.5);
+    margin-bottom: 20px;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+  }
+  .loading {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 </style>
 
 <section>
   <h2>Contacto</h2>
   <p>¿Quieres automatizar tu negocio, implementar IA o necesitas consultoría tecnológica? Estoy aquí para ayudarte.</p>
+  
+  <div id="message-container"></div>
 
-  {sent && <div class="success">Formulario enviado correctamente. ¡Gracias por contactar!</div>}
-
-  <form method="POST" action="https://your-worker-url.workers.dev">
-    <input type="text" name="nombre" placeholder="Tu nombre" required />
-    <input type="email" name="email" placeholder="Tu correo" required />
-    <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-
-    <button type="submit">Enviar mensaje</button>
+  <form id="contactForm">
+    <input 
+      type="text" 
+      name="nombre" 
+      placeholder="Tu nombre" 
+      required 
+      minlength="2"
+    />
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Tu correo" 
+      required 
+    />
+    <textarea 
+      name="mensaje" 
+      rows="5" 
+      placeholder="Escribe tu mensaje..." 
+      required 
+      minlength="10"
+    ></textarea>
+    <button type="submit" id="submitBtn">Enviar mensaje</button>
   </form>
 </section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const messageContainer = document.getElementById('message-container');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    submitBtn.disabled = true;
+    
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<span class="loading"></span>Enviando...';
+    messageContainer.innerHTML = '';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        messageContainer.innerHTML = `<div class="success">${data.message}</div>`;
+        form.reset();
+      } else {
+        messageContainer.innerHTML = `<div class="error">${data.error || 'Error enviando el mensaje'}</div>`;
+      }
+    } catch (error) {
+      messageContainer.innerHTML = `<div class="error">Error de conexión. Intenta de nuevo.</div>`;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+</script>

@@ -1,0 +1,31 @@
+
+> jlr-solutions@0.0.1 dev
+> astro dev
+
+12:52:54 [@astrojs/node] Enabling sessions with filesystem storage
+12:52:54 [types] Generated 1ms
+12:52:54 [content] Syncing content
+12:52:54 [content] Astro config changed
+12:52:54 [content] Astro version changed
+12:52:54 [content] Clearing content store
+12:52:54 [content] Synced content
+12:52:54 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.18.1 ready in 280 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+12:52:54 watching for file changes...
+
+ update  ▶ New version of Astro available: 6.3.5
+  Run npx @astrojs/upgrade to update
+
+⚠️ SMTP no configurado. Los emails no se enviarán.
+📧 Email simulado (SMTP no configurado): {
+  nombre: 'Test',
+  email: 'test@example.com',
+  mensaje: 'Este es un mensaje de prueba con contenido suficiente'
+}
+12:53:43 [200] POST /api/contact 47ms
+12:55:27 [500] POST /api/chat 7ms
