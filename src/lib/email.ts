@@ -16,10 +16,13 @@ export async function initializeEmailTransport() {
     return null;
   }
 
+  const port = parseInt(smtpPort);
+  
   transporter = nodemailer.createTransport({
     host: smtpHost,
-    port: parseInt(smtpPort),
-    secure: parseInt(smtpPort) === 465,
+    port: port,
+    secure: false,  // false para puerto 587 (STARTTLS)
+    requireTLS: true,  // Forzar TLS
     auth: {
       user: smtpUser,
       pass: smtpPass,
@@ -71,6 +74,7 @@ export async function sendContactEmail(
       `,
     });
 
+    console.log(`✅ Email enviado a ${contactEmail} desde ${email}`);
     return { success: true, message: 'Email enviado correctamente' };
   } catch (error) {
     console.error('Error enviando email:', error);

@@ -1,10 +1,22 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.join(__dirname, '../../data/contacts.db');
+
+// En producción, usar ruta absoluta desde el cwd
+const dataDir = process.env.NODE_ENV === 'production' 
+  ? path.join(process.cwd(), 'data')
+  : path.join(__dirname, '../../data');
+
+// Crear directorio si no existe
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+const dbPath = path.join(dataDir, 'contacts.db');
 
 let db: Database.Database | null = null;
 
