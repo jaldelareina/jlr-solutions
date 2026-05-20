@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
-import { saveContact, checkRateLimit } from '../../lib/db';
-import { sendContactEmail } from '../../lib/email';
+import { saveContact, checkRateLimit } from '../lib/db';
+import { sendContactEmail } from '../lib/email';
 
 export const POST: APIRoute = async ({ request }) => {
   try {

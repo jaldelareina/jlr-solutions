@@ -13,5 +13,10 @@ export default defineConfig({
   },
   security: {
     checkOrigin: false,
+  },
+  vite: {
+    define: {
+      'import.meta.env.CLOUDFLARE_CACHE_CONTROL': '"public, max-age=0, must-revalidate"'
+    }
   }
 });
