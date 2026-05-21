@@ -1,22 +1,6 @@
 /// @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
 
 export default defineConfig({
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
-  server: {
-    host: '0.0.0.0',
-    port: 3000,
-  },
-  security: {
-    checkOrigin: false,
-  },
-  vite: {
-    define: {
-      'import.meta.env.CLOUDFLARE_CACHE_CONTROL': '"public, max-age=0, must-revalidate"'
-    }
-  }
+  output: 'static'
 });
