@@ -1,6 +1,6 @@
 ---
 ---
-<style>
+<style is:global>
   .chat-container {
     position: fixed;
     bottom: 22px;
@@ -91,14 +91,16 @@
     gap: 12px;
   }
 
-  .message {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    line-height: 1.4;
-    font-size: 14px;
-    animation: messageSlide 0.3s ease;
-  }
+.message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  line-height: 1.5;
+  font-size: 14px;
+  animation: messageSlide 0.3s ease;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
 
   @keyframes messageSlide {
     from {
@@ -329,7 +331,7 @@ try {
       if (data.success) {
         const botMessageDiv = document.createElement('div');
         botMessageDiv.className = 'message bot';
-        botMessageDiv.textContent = data.reply;
+        botMessageDiv.innerHTML = formatBotReply(data.reply);
         chatMessages?.appendChild(botMessageDiv);
       } else {
         const errorDiv = document.createElement('div');
@@ -357,4 +359,13 @@ try {
       sendMessage();
     }
   });
+
+function formatBotReply(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
 </script>
