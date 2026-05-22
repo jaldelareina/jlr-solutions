@@ -214,18 +214,87 @@
     cursor: not-allowed;
   }
 
-  @media (max-width: 480px) {
-    .chat-window {
-      width: calc(100vw - 40px);
-      height: 60vh;
-      bottom: 80px;
-      right: 20px;
-    }
-
-    .message {
-      max-width: 90%;
-    }
+@media (max-width: 600px) {
+  .chat-container {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    z-index: 9999;
   }
+
+  .chat-bubble {
+    width: 56px;
+    height: 56px;
+    margin-left: auto;
+  }
+
+  .chat-window {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 84px;
+    width: auto;
+    height: min(72vh, 560px);
+    max-height: calc(100vh - 110px);
+    border-radius: 18px;
+  }
+
+  .chat-header {
+    padding: 14px 16px;
+  }
+
+  .chat-header h3 {
+    font-size: 15px;
+  }
+
+  .chat-messages {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .message {
+    max-width: 92%;
+    font-size: 14px;
+    line-height: 1.45;
+    padding: 10px 12px;
+  }
+
+  .chat-input-area {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .chat-input {
+    min-width: 0;
+    font-size: 16px;
+    padding: 11px 12px;
+  }
+
+  .send-btn {
+    flex: 0 0 44px;
+    height: 44px;
+    padding: 0;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .chat-window {
+    left: 8px;
+    right: 8px;
+    bottom: 78px;
+    height: 74vh;
+  }
+
+  .message {
+    max-width: 95%;
+    font-size: 13.5px;
+  }
+
+  .chat-input-area {
+    padding: 8px;
+  }
+}
 </style>
 
 <div class="chat-container">
