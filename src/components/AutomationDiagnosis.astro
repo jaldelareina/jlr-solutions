@@ -159,7 +159,9 @@
       .map((answer) => `<li>${answer.label}</li>`)
       .join('');
 
-    const contactUrl = `/contacto?diagnostico=${encodeURIComponent(result.title)}`;
+const answersText = answers.map((answer) => answer.label).join(' | ');
+
+const contactUrl = `/contacto?diagnostico=${encodeURIComponent(result.title)}&respuestas=${encodeURIComponent(answersText)}`;
 
     resultEl.innerHTML = `
       <div class="result-badge">Resultado</div>

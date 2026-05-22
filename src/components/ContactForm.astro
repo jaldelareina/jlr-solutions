@@ -118,6 +118,24 @@
   const submitBtn = document.getElementById('submitBtn');
   const messageContainer = document.getElementById('message-container');
 
+const messageTextarea = form?.querySelector('textarea[name="mensaje"]');
+
+const params = new URLSearchParams(window.location.search);
+const diagnostico = params.get('diagnostico');
+const respuestas = params.get('respuestas');
+
+if (diagnostico && messageTextarea) {
+  messageTextarea.value = `Hola, he realizado el diagnóstico interactivo en la web y me gustaría revisar mi caso.
+
+Resultado del diagnóstico:
+${diagnostico}
+
+Respuestas seleccionadas:
+${respuestas || 'No disponibles'}
+
+Me gustaría que me contactéis para valorar posibles automatizaciones en mi empresa.`;
+}
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
