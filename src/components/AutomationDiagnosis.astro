@@ -1,0 +1,406 @@
+<section class="diagnosis" id="diagnostico">
+  <div class="diagnosis-inner">
+    <div class="diagnosis-header">
+      <p class="eyebrow">Diagnóstico rápido</p>
+      <h2>¿Cuánto podrías automatizar en tu empresa?</h2>
+      <p>
+        Responde unas preguntas rápidas y obtén una primera orientación sobre procesos que podrías automatizar.
+      </p>
+    </div>
+
+    <div class="diagnosis-card">
+      <div class="progress">
+        <div class="progress-bar" id="diagnosisProgress"></div>
+      </div>
+
+      <div id="diagnosisQuestion" class="question"></div>
+
+      <div id="diagnosisOptions" class="options"></div>
+
+      <div id="diagnosisResult" class="result hidden"></div>
+
+      <div class="actions">
+        <button id="diagnosisBack" class="ghost-btn" type="button">Atrás</button>
+        <button id="diagnosisRestart" class="ghost-btn hidden" type="button">Reiniciar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const questions = [
+    {
+      text: '¿Qué tipo de tareas repetitivas tienes actualmente?',
+      options: [
+        { label: 'Copiar datos entre sistemas', score: 3 },
+        { label: 'Gestionar correos y adjuntos', score: 3 },
+        { label: 'Generar informes manuales', score: 2 },
+        { label: 'No lo tengo claro todavía', score: 1 },
+      ],
+    },
+    {
+      text: '¿Qué sistemas usas en tu día a día?',
+      options: [
+        { label: 'ERP / CRM / base de datos', score: 3 },
+        { label: 'Microsoft 365 / Excel / Outlook', score: 2 },
+        { label: 'Herramientas web o formularios', score: 2 },
+        { label: 'Principalmente procesos manuales', score: 1 },
+      ],
+    },
+    {
+      text: '¿Cuánto tiempo se pierde semanalmente en estas tareas?',
+      options: [
+        { label: 'Menos de 2 horas', score: 1 },
+        { label: 'Entre 2 y 5 horas', score: 2 },
+        { label: 'Entre 5 y 15 horas', score: 3 },
+        { label: 'Más de 15 horas', score: 4 },
+      ],
+    },
+    {
+      text: '¿Hay errores por introducir datos manualmente?',
+      options: [
+        { label: 'Sí, ocurre con frecuencia', score: 4 },
+        { label: 'A veces', score: 2 },
+        { label: 'Casi nunca', score: 1 },
+        { label: 'No lo sé', score: 1 },
+      ],
+    },
+    {
+      text: '¿Qué te gustaría conseguir?',
+      options: [
+        { label: 'Automatizar procesos internos', score: 3 },
+        { label: 'Conectar mi web con mi ERP/CRM', score: 4 },
+        { label: 'Implementar un chatbot IA', score: 3 },
+        { label: 'Tener informes o alertas automáticas', score: 2 },
+      ],
+    },
+  ];
+
+  let currentQuestion = 0;
+  let totalScore = 0;
+  const answers = [];
+
+  const questionEl = document.getElementById('diagnosisQuestion');
+  const optionsEl = document.getElementById('diagnosisOptions');
+  const resultEl = document.getElementById('diagnosisResult');
+  const progressEl = document.getElementById('diagnosisProgress');
+  const backBtn = document.getElementById('diagnosisBack');
+  const restartBtn = document.getElementById('diagnosisRestart');
+
+  function renderQuestion() {
+    const question = questions[currentQuestion];
+
+    questionEl.textContent = question.text;
+    optionsEl.innerHTML = '';
+    resultEl.classList.add('hidden');
+    restartBtn.classList.add('hidden');
+
+    backBtn.style.visibility = currentQuestion === 0 ? 'hidden' : 'visible';
+
+    const progress = (currentQuestion / questions.length) * 100;
+    progressEl.style.width = `${progress}%`;
+
+    question.options.forEach((option) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'option-btn';
+      button.textContent = option.label;
+
+      button.addEventListener('click', () => {
+        answers[currentQuestion] = option;
+        totalScore = answers.reduce((sum, item) => sum + (item?.score || 0), 0);
+
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+
+      optionsEl.appendChild(button);
+    });
+  }
+
+  function getResult(score) {
+    if (score >= 15) {
+      return {
+        title: 'Alto potencial de automatización',
+        text: 'Tu empresa parece tener procesos con mucho margen de mejora. Probablemente podrías ahorrar tiempo, reducir errores y conectar sistemas con automatizaciones bien diseñadas.',
+        estimate: 'Estimación orientativa: automatización prioritaria recomendable.',
+      };
+    }
+
+    if (score >= 10) {
+      return {
+        title: 'Potencial medio-alto',
+        text: 'Hay señales claras de que algunos procesos podrían automatizarse, especialmente si trabajas con correos, documentos, ERP, CRM o informes recurrentes.',
+        estimate: 'Estimación orientativa: buen momento para revisar procesos.',
+      };
+    }
+
+    return {
+      title: 'Potencial inicial',
+      text: 'Puede que todavía no tengas un proceso crítico claro, pero probablemente existan pequeñas tareas repetitivas que podrían optimizarse poco a poco.',
+      estimate: 'Estimación orientativa: empezar por una automatización sencilla.',
+    };
+  }
+
+  function showResult() {
+    const result = getResult(totalScore);
+
+    progressEl.style.width = '100%';
+    questionEl.textContent = '';
+    optionsEl.innerHTML = '';
+    backBtn.style.visibility = 'hidden';
+    restartBtn.classList.remove('hidden');
+
+    const selectedAnswers = answers
+      .map((answer) => `<li>${answer.label}</li>`)
+      .join('');
+
+    const contactUrl = `/contacto?diagnostico=${encodeURIComponent(result.title)}`;
+
+    resultEl.innerHTML = `
+      <div class="result-badge">Resultado</div>
+      <h3>${result.title}</h3>
+      <p>${result.text}</p>
+      <p class="estimate">${result.estimate}</p>
+
+      <div class="summary">
+        <strong>Respuestas principales:</strong>
+        <ul>${selectedAnswers}</ul>
+      </div>
+
+      <a class="result-cta" href="${contactUrl}">
+        Quiero revisar mi caso
+      </a>
+    `;
+
+    resultEl.classList.remove('hidden');
+  }
+
+  backBtn?.addEventListener('click', () => {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  });
+
+  restartBtn?.addEventListener('click', () => {
+    currentQuestion = 0;
+    totalScore = 0;
+    answers.length = 0;
+    renderQuestion();
+  });
+
+  renderQuestion();
+</script>
+
+<style>
+.diagnosis {
+  padding: 5rem 1.5rem;
+  color: white;
+}
+
+.diagnosis-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.diagnosis-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: #93c5fd;
+  background: rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.35);
+  font-size: 0.9rem;
+}
+
+.diagnosis h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+}
+
+.diagnosis-header p {
+  max-width: 700px;
+  margin: 1rem auto 0;
+  color: rgba(228, 232, 239, 0.82);
+  line-height: 1.6;
+}
+
+.diagnosis-card {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.progress {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #58a6ff, #7cf7ff);
+  transition: width 0.3s ease;
+}
+
+.question {
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.option-btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(88, 166, 255, 0.45);
+  background: rgba(88, 166, 255, 0.12);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.ghost-btn {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.ghost-btn:hover {
+  color: white;
+  border-color: rgba(88, 166, 255, 0.45);
+}
+
+.hidden {
+  display: none;
+}
+
+.result {
+  text-align: left;
+}
+
+.result-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  color: #0b1220;
+  background: #7cf7ff;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.result h3 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+}
+
+.result p {
+  color: rgba(228, 232, 239, 0.86);
+  line-height: 1.65;
+}
+
+.estimate {
+  color: #93c5fd !important;
+  font-weight: 700;
+}
+
+.summary {
+  margin: 1.4rem 0;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.summary ul {
+  margin: 0.7rem 0 0;
+  padding-left: 1.2rem;
+  color: rgba(228, 232, 239, 0.82);
+}
+
+.result-cta {
+  display: inline-flex;
+  margin-top: 0.5rem;
+  padding: 0.95rem 1.4rem;
+  border-radius: 14px;
+  background: #58a6ff;
+  color: #000;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.result-cta:hover {
+  background: #7cf7ff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .diagnosis {
+    padding: 3.8rem 1rem;
+  }
+
+  .diagnosis-card {
+    padding: 1.25rem;
+    border-radius: 18px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    gap: 1rem;
+  }
+
+  .ghost-btn {
+    width: 100%;
+  }
+
+  .result-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
