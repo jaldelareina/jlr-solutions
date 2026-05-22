@@ -1,0 +1,271 @@
+<section class="home-highlights">
+  <div class="highlights-inner">
+    <div class="section-heading">
+      <p class="eyebrow">Soluciones en acción</p>
+      <h2>Automatizaciones pensadas para problemas reales</h2>
+      <p>
+        No se trata de añadir tecnología por añadirla. Se trata de conectar procesos,
+        reducir tareas manuales y hacer que tus sistemas trabajen mejor juntos.
+      </p>
+    </div>
+
+    <div class="highlight-grid">
+      <article class="highlight-card featured">
+        <span class="tag">Caso habitual</span>
+        <h3>Facturas por email integradas con tu ERP</h3>
+        <p>
+          Automatiza la recepción de facturas, extracción de datos, validación y preparación
+          de la información para integrarla con tu sistema.
+        </p>
+        <a href="/contacto">Quiero algo así</a>
+      </article>
+
+      <article class="highlight-card">
+        <span class="icon">🤖</span>
+        <h3>Chatbots IA para web o equipos internos</h3>
+        <p>
+          Asistentes capaces de orientar usuarios, responder dudas, captar oportunidades
+          o ayudar a tu equipo con información interna.
+        </p>
+      </article>
+
+      <article class="highlight-card">
+        <span class="icon">🔗</span>
+        <h3>Web, CRM, ERP y datos conectados</h3>
+        <p>
+          Integramos aplicaciones para evitar copiar datos a mano y mantener la información
+          sincronizada entre sistemas.
+        </p>
+      </article>
+
+      <article class="highlight-card">
+        <span class="icon">📊</span>
+        <h3>Informes y alertas automáticas</h3>
+        <p>
+          Genera reportes, avisos y tareas automáticas desde tus datos sin depender de procesos manuales.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="home-cta">
+  <div class="home-cta-card">
+    <div>
+      <p class="eyebrow">Primer paso</p>
+      <h2>¿Tienes un proceso que se repite demasiado?</h2>
+      <p>
+        Si hay correos, Excel, facturas, ERPs, CRMs o tareas manuales de por medio,
+        probablemente se pueda automatizar.
+      </p>
+    </div>
+
+    <div class="cta-actions">
+      <a href="/#diagnostico" class="btn secondary">Hacer diagnóstico</a>
+      <a href="/contacto" class="btn primary">Contactar</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.home-highlights,
+.home-cta {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 4rem 0;
+  color: white;
+}
+
+.section-heading {
+  max-width: 780px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: #93c5fd;
+  background: rgba(88, 166, 255, 0.08);
+  border: 1px solid rgba(88, 166, 255, 0.35);
+  font-size: 0.9rem;
+}
+
+.section-heading h2,
+.home-cta-card h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.12;
+}
+
+.section-heading p,
+.home-cta-card p,
+.highlight-card p {
+  color: rgba(228, 232, 239, 0.82);
+  line-height: 1.7;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.highlight-card {
+  min-height: 230px;
+  padding: 1.6rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(88, 166, 255, 0.35);
+}
+
+.highlight-card.featured {
+  grid-row: span 2;
+  background:
+    linear-gradient(135deg, rgba(88, 166, 255, 0.17), rgba(255, 255, 255, 0.04));
+  border-color: rgba(88, 166, 255, 0.25);
+}
+
+.highlight-card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.highlight-card.featured h3 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+
+.highlight-card a {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: #7cf7ff;
+  font-weight: 800;
+}
+
+.icon {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.tag {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(124, 247, 255, 0.16);
+  color: #7cf7ff;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.home-cta-card {
+  display: grid;
+  grid-template-columns: 1.3fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.2rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(88, 166, 255, 0.16), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(88, 166, 255, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn {
+  min-width: 170px;
+  padding: 0.95rem 1.6rem;
+  border-radius: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.btn.primary {
+  background: #58a6ff;
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: #7cf7ff;
+  color: #000;
+}
+
+.btn.secondary {
+  color: white;
+  border: 2px solid rgba(88, 166, 255, 0.75);
+}
+
+.btn.secondary:hover {
+  background: rgba(88, 166, 255, 0.16);
+  color: white;
+}
+
+@media (max-width: 980px) {
+  .highlight-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .highlight-card.featured {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .home-cta-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cta-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-highlights,
+  .home-cta {
+    width: min(100% - 24px, 1180px);
+    padding: 3rem 0;
+  }
+
+  .highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card,
+  .home-cta-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .highlight-card {
+    min-height: auto;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+</style>
