@@ -1,7 +1,12 @@
 <section class="hero">
   <div class="hero-content">
+    <p class="eyebrow">Automatización · IA · Integración</p>
+
     <h1>Automatización e Inteligencia Artificial para impulsar tu negocio</h1>
-    <p>Soluciones inteligentes que integran procesos, datos y sistemas para mejorar la eficiencia y productividad de tu empresa.</p>
+
+    <p class="hero-text">
+      Soluciones inteligentes que integran procesos, datos y sistemas para mejorar la eficiencia y productividad de tu empresa.
+    </p>
 
     <div class="buttons">
       <a class="btn primary" href="/servicios">Ver servicios</a>
@@ -12,7 +17,7 @@
 
 <style>
 .hero {
-  height: 85vh;
+  min-height: calc(100vh - 96px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,14 +25,13 @@
   color: white;
   position: relative;
   overflow: hidden;
+  padding: 80px 20px;
 
-  /* Fondo animado */
   background: linear-gradient(-45deg, #0b0f19, #0a1d33, #132a4f, #0d1b2e);
   background-size: 400% 400%;
   animation: gradientAnimation 18s ease infinite;
 }
 
-/* Animación del gradiente */
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -35,35 +39,52 @@
 }
 
 .hero-content {
-  max-width: 900px;
-  padding: 0 1rem;
+  max-width: 940px;
+  width: 100%;
   animation: fadeInUp 1.2s ease forwards;
   opacity: 0;
 }
 
-h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 8px 14px;
+  border: 1px solid rgba(88, 166, 255, 0.35);
+  border-radius: 999px;
+  color: #93c5fd;
+  background: rgba(88, 166, 255, 0.08);
+  font-size: 0.95rem;
 }
 
-p {
-  margin-top: 1.2rem;
-  font-size: 1.25rem;
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+}
+
+.hero-text {
+  max-width: 760px;
+  margin: 1.3rem auto 0;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.65;
   opacity: 0.9;
 }
 
 .buttons {
-  margin-top: 2rem;
+  margin-top: 2.2rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0.9rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
+  min-width: 160px;
+  padding: 0.95rem 1.8rem;
+  border-radius: 12px;
+  font-weight: 700;
   text-decoration: none;
   transition: 0.2s ease-in-out;
 }
@@ -92,9 +113,54 @@ p {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 2.3rem; }
-  p { font-size: 1.1rem; }
+  .hero {
+    min-height: auto;
+    padding: 72px 18px 56px;
+    align-items: flex-start;
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1.8rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding: 56px 14px 44px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero-text {
+    font-size: 0.96rem;
+  }
 }
 </style>

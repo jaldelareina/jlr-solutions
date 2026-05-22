@@ -1,9 +1,13 @@
 <nav class="navbar">
-  <a href="/" class="logo">
+  <a href="/" class="logo" aria-label="JLR Solutions">
     <img src="/logo-jlr.png" alt="JLR Solutions Logo" />
   </a>
 
-  <ul class="menu">
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    ☰
+  </button>
+
+  <ul class="menu" id="mainMenu">
     <li><a href="/">Inicio</a></li>
     <li><a href="/servicios">Servicios</a></li>
     <li><a href="/sobre-mi">Sobre mí</a></li>
@@ -11,33 +15,130 @@
   </ul>
 </nav>
 
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainMenu = document.getElementById('mainMenu');
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = mainMenu?.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  mainMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mainMenu.classList.remove('open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
 <style>
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: #0c0f16;
+  gap: 1.5rem;
+  padding: 0.75rem 2rem;
+  background: rgba(12, 15, 22, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .logo img {
-  height: 100px;
+  height: 72px;
   width: auto;
+  display: block;
 }
 
 .menu {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu a {
   color: white;
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .menu a:hover {
   color: #58a6ff;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.65rem 1rem;
+  }
+
+  .logo img {
+    height: 54px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 12px;
+    right: 12px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px;
+    background: rgba(12, 15, 22, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li {
+    width: 100%;
+  }
+
+  .menu a {
+    display: block;
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+  }
+
+  .menu a:hover {
+    background: rgba(88, 166, 255, 0.12);
+  }
 }
 </style>

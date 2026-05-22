@@ -3,89 +3,151 @@ import 'iconify-icon';
 ---
 
 <section class="services">
-  <h2>Servicios</h2>
-  <p class="subtitle">
-    Soluciones diseñadas para potenciar la eficiencia y modernizar tus procesos.
-  </p>
+  <div class="services-inner">
+    <h2>Servicios</h2>
+    <p class="subtitle">
+      Soluciones diseñadas para potenciar la eficiencia y modernizar tus procesos.
+    </p>
 
-  <div class="cards">
+    <div class="cards">
 
-    <div class="card">
-      <iconify-icon icon="feather:settings" class="icon"></iconify-icon>
-      <h3>Automatizaciones</h3>
-      <p>Creamos flujos inteligentes que eliminan tareas repetitivas y conectan sistemas de forma automática.</p>
+      <div class="card">
+        <iconify-icon icon="feather:settings" class="icon"></iconify-icon>
+        <h3>Automatizaciones</h3>
+        <p>Creamos flujos inteligentes que eliminan tareas repetitivas y conectan sistemas de forma automática.</p>
+      </div>
+
+      <div class="card">
+        <iconify-icon icon="fluent:bot-20-regular" class="icon"></iconify-icon>
+        <h3>Chatbots IA</h3>
+        <p>Implementamos asistentes virtuales capaces de responder preguntas, generar resúmenes y asistir a tu equipo.</p>
+      </div>
+
+      <div class="card">
+        <iconify-icon icon="feather:share-2" class="icon"></iconify-icon>
+        <h3>Integración entre sistemas</h3>
+        <p>Conectamos aplicaciones, ERPs, CRMs y bases de datos para un flujo de datos unificado y eficiente.</p>
+      </div>
+
+      <div class="card">
+        <iconify-icon icon="heroicons:cpu" class="icon"></iconify-icon>
+        <h3>IA aplicada al negocio</h3>
+        <p>Modelos de predicción, análisis inteligente y herramientas basadas en datos para tomar mejores decisiones.</p>
+      </div>
+
+      <div class="card">
+        <iconify-icon icon="feather:briefcase" class="icon"></iconify-icon>
+        <h3>Consultoría tecnológica</h3>
+        <p>Te acompañamos en la transformación digital con estrategias claras, seguras y escalables.</p>
+      </div>
+
     </div>
-
-    <div class="card">
-      <iconify-icon icon="fluent:bot-20-regular" class="icon"></iconify-icon>
-      <h3>Chatbots IA</h3>
-      <p>Implementamos asistentes virtuales capaces de responder preguntas, generar resúmenes y asistir a tu equipo.</p>
-    </div>
-
-    <div class="card">
-      <iconify-icon icon="feather:share-2" class="icon"></iconify-icon>
-      <h3>Integración entre sistemas</h3>
-      <p>Conectamos aplicaciones, ERPs, CRMs y bases de datos para un flujo de datos unificado y eficiente.</p>
-    </div>
-
-    <div class="card">
-      <iconify-icon icon="heroicons:cpu" class="icon"></iconify-icon>
-      <h3>IA aplicada al negocio</h3>
-      <p>Modelos de predicción, análisis inteligente y herramientas basadas en datos para tomar mejores decisiones.</p>
-    </div>
-
-    <div class="card">
-      <iconify-icon icon="feather:briefcase" class="icon"></iconify-icon>
-      <h3>Consultoría tecnológica</h3>
-      <p>Te acompañamos en la transformación digital con estrategias claras, seguras y escalables.</p>
-    </div>
-
   </div>
 </section>
 
 <style>
 .services {
-  padding: 5rem 2rem;
+  padding: 5rem 1.5rem;
   text-align: center;
   color: white;
 }
 
-.services h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  opacity: 0.8;
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+.services-inner {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.services h2 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin: 0 0 0.6rem;
+}
+
+.subtitle {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  opacity: 0.82;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 1.6rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(6px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(88, 166, 255, 0.35);
 }
 
 .icon {
-  font-size: 48px;
+  font-size: 44px;
   margin-bottom: 1rem;
   color: #58a6ff;
+}
+
+.card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.card p {
+  margin: 0;
+  color: rgba(228, 232, 239, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 3.8rem 1rem;
+  }
+
+  .subtitle {
+    margin-bottom: 2rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    text-align: left;
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .icon {
+    font-size: 38px;
+    margin-bottom: 0.8rem;
+  }
+
+  .card h3 {
+    font-size: 1.08rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
 }
 </style>
