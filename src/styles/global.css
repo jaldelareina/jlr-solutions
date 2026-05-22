@@ -178,3 +178,6 @@ textarea {
     border-radius: 14px;
   }
 }
+section {
+  scroll-margin-top: 96px;
+}
